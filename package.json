@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/google.maps": "^3.58.1",
     "@types/node-fetch": "^2.6.11",
     "concurrently": "^8.2.2",
