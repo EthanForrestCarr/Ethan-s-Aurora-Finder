@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js'; // Adjust the import path as necessary
+import User from '../models/User.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -29,7 +29,8 @@ router.post('/register', async (req: Request, res: Response) => {
         // Respond with success message
         res.status(201).json({ message: 'User registered successfully', user: { id: user.id, name: user.name, email: user.email } });
     } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+        console.error('Registration error:', error);
+        res.status(500).json({ message: 'Server error', error: error instanceof Error ? error.message : String(error) });
     }
     return;
 });
@@ -58,12 +59,12 @@ router.post('/login', async (req: Request, res: Response) => {
         };
 
         // Sign token
-        const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: '1h' });
-
+        const token = jwt.sign(payload, process.env.JWT_SECRET_KEY!, { expiresIn: '1h' });
+        
         // Respond with token
         res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
     } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error', error: error instanceof Error ? error.message : String(error) });
     }
     return;
 });
