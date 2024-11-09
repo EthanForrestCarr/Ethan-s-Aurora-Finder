@@ -10,7 +10,7 @@ interface UserAttributes {
 }
 
 // Define a creation interface that omits the id, as it's automatically generated
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+interface UserCreationAttributes extends Optional<UserAttributes, 'id'> { }
 
 // Extend Sequelize's Model class
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
@@ -49,6 +49,8 @@ User.init(
     {
         sequelize,
         modelName: 'User',
+        tableName: 'Users', // Ensure the table name matches
+        timestamps: true,
     }
 );
 
