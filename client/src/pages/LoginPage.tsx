@@ -7,8 +7,14 @@ const LoginPage: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     const handleAuth = async () => {
+        if (!validateEmail(email)) {
+            setEmailError("Please enter a valid email address.");
+            return;
+        }
+        setEmailError('');
         try {
             if (isRegistering) {
                 await register(name, email, password);
@@ -18,6 +24,11 @@ const LoginPage: React.FC = () => {
         } catch (error) {
             console.error("Authentication error:", error);
         }
+    };
+
+    const validateEmail = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     };
 
     return (
@@ -36,7 +47,15 @@ const LoginPage: React.FC = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onBlur={() => {
+                    if (!validateEmail(email)) {
+                        setEmailError("Please enter a valid email address.");
+                    } else {
+                        setEmailError('');
+                    }
+                }}
             />
+            {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
             <input
                 type="password"
                 placeholder="Password"
@@ -52,3 +71,4 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
+

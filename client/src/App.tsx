@@ -10,8 +10,8 @@ const App: React.FC = () => {
         <AuthProvider>
             <Router>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/home" element={<HomePage />} />
                     <Route path="/log" element={<AuroraLogPage />} />
                 </Routes>
             </Router>
