@@ -2,8 +2,11 @@ import express, { Request, Response, NextFunction } from 'express';
 import auroraRouter from './routes/aurora.js';
 import authRouter from './routes/userAuth.js';
 import mapsRouter from './routes/maps.js';
+import cors from 'cors';
 
 const app = express();
+
+app.use(cors());
 
 // Middleware setup
 app.use(express.json());
