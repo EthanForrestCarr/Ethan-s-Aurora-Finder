@@ -1,7 +1,7 @@
 import express from 'express';
-import auroraRouter from './src/routes/aurora.js';
-import authRouter from './src/routes/userAuth.js';
-import mapsRouter from './src/routes/maps.js';
+import auroraRouter from './routes/aurora.js';
+import authRouter from './routes/userAuth.js';
+import mapsRouter from './routes/maps.js';
 
 const app = express();
 
