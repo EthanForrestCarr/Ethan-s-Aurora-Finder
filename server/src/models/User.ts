@@ -49,8 +49,8 @@ User.init(
     {
         sequelize,
         modelName: 'User',
-        tableName: 'Users', // Ensure the table name matches
-        timestamps: true,
+        tableName: 'users', // Ensure the table name matches
+        timestamps: false,
     }
 );
 

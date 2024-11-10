@@ -16,13 +16,4 @@ const sequelize = new Sequelize(process.env.DB_NAME!, process.env.DB_USER!, proc
     dialect: 'postgres',
 });
 
-sequelize.sync({ force: false }) // Use `force: true` only in development
-    .then(() => {
-        console.log("Database & tables created!");
-    })
-    .catch((error) => {
-        console.error("Error creating database tables:", error);
-    });
-
-
 export default sequelize;
