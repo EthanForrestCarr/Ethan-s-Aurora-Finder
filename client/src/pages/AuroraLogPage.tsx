@@ -34,6 +34,7 @@ const AuroraLogPage: React.FC = () => {
                     location={entry.location}
                     intensity={entry.intensity}
                     notes={entry.notes}
+                    onSave={(note) => console.log(`Saved note: ${note}`)}
                 />
             ))}
         </div>
