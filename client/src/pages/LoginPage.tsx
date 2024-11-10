@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
     const { login, register } = useAuth();
@@ -8,6 +9,7 @@ const LoginPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
+    const navigate = useNavigate();
 
     const handleAuth = async () => {
         if (!validateEmail(email)) {
@@ -15,12 +17,14 @@ const LoginPage: React.FC = () => {
             return;
         }
         setEmailError('');
+
         try {
             if (isRegistering) {
                 await register(name, email, password);
             } else {
                 await login(email, password);
             }
+            navigate('/home');
         } catch (error) {
             console.error("Authentication error:", error);
         }
@@ -71,4 +75,3 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
-
