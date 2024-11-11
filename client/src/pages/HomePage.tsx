@@ -1,8 +1,10 @@
+// src/pages/HomePage.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuroraLogEntry from '../components/AuroraLogEntry';
 import LocationInput from '../components/LocationInput';
+import GeoapifyAutocomplete from '../components/GeoApify';
 
 interface LogEntry {
     date?: string;
@@ -38,7 +40,11 @@ const HomePage: React.FC = () => {
         <div>
             <h1>Welcome, {user?.name || 'User'}!</h1>
             <button onClick={handleLogout}>Sign Out</button>
+
+            <GeoapifyAutocomplete />
+
             <LocationInput />
+
             <h2>Your Aurora Journal</h2>
             <button onClick={handleAddEntry}>Add New Entry</button>
 
@@ -62,3 +68,4 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+

@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import auroraRouter from './routes/aurora.js';
 import authRouter from './routes/userAuth.js';
-import mapsRouter from './routes/maps.js';
+import geoapifyRouter from './routes/geoapify.js';
 import cors from 'cors';
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRouter);
 app.use('/api/aurora', auroraRouter);
-app.use('/api/maps', mapsRouter);
+app.use('/api', geoapifyRouter);
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
     console.error(err.stack); // Logs the error for debugging
